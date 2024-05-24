@@ -84,6 +84,9 @@
     device-orientation-permission-ui="enabled: false"
     renderer="colorManagement: true, physicallyCorrectLights"
   >
+    <a-assets>
+      <a-asset-item id="dep" src="./dep.glb"></a-asset-item>
+    </a-assets>
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
     <a-entity mindar-image-target="targetIndex: 0">
       <a-gltf-model
@@ -93,6 +96,7 @@
         scale="0.5 0.5 0.5"
         src="https://cdn.glitch.global/d562de30-d533-4a27-8c05-2a86a1bcba88/house.glb?v=1716243897270;"
       ></a-gltf-model>
+
     </a-entity>
   </a-scene>
 
@@ -108,7 +112,8 @@
         'https://cdn.glitch.global/d562de30-d533-4a27-8c05-2a86a1bcba88/house.glb?v=1716243897270',
         'https://cdn.glitch.global/d562de30-d533-4a27-8c05-2a86a1bcba88/ImageToStl.com_old%2Bhouse%2B2%2B3d%2Bmodels.glb?v=1716398127561',
         'https://cdn.glitch.me/d562de30-d533-4a27-8c05-2a86a1bcba88/cuartoALV.glb?v=1716515505896',
-        'https://cdn.glitch.global/d562de30-d533-4a27-8c05-2a86a1bcba88/room2.glb?v=1716515901238'
+        'https://cdn.glitch.global/d562de30-d533-4a27-8c05-2a86a1bcba88/room2.glb?v=1716515901238',
+        '#dep'
       ];
 
       outlookButton.addEventListener('click', function() {
