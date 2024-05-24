@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image.prod.js"></script>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image-aframe.prod.js"></script>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+    .overlay {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      gap: 10px;
+    }
+    .overlay button {
+      padding: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: none;
+      position: relative;
+    }
+    .overlay button img {
+      width: 30px;
+      height: 30px;
+      z-index: 2;
+    }
+    .overlay button.outlook-button {
+      border-radius: 50%;
+      background-color: white;
+      width: 30px;
+      height: 30px;
+      z-index: 1;
+      bottom: -15px; /* Adjust this value to move the button up or down */
+    }
+
+    .overlay button.linkedin-button img {
+      width: 30px; /* Change this value to adjust the image size */
+      height: 30px; /* Change this value to adjust the image size */
+    }
+    #next-model-button {
+      padding: 10px 20px;
+      font-size: 32px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    #previous-model-button {
+      padding: 10px 20px;
+      font-size: 32px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <button id="outlook-button" class="outlook-button">
+      <img src="https://cdn.glitch.global/d562de30-d533-4a27-8c05-2a86a1bcba88/icone-outlook-bleu.png?v=1716496345303" alt="Outlook">
+    </button>
+    <button id="linkedin-button" class="linkedin-button">
+      <img src="https://cdn.glitch.global/d562de30-d533-4a27-8c05-2a86a1bcba88/linkedin.webp?v=1716495844009" alt="LinkedIn">
+    </button>
+    <button id="previous-model-button">&lt;</button>
+    <button id="next-model-button">&gt;</button>
+  </div>
+
+  <a-scene
+    mindar-image="imageTargetSrc:https://cdn.glitch.global/d562de30-d533-4a27-8c05-2a86a1bcba88/complexImageScale8.mind?v=1716254253503; filterMinCF:0.1; filterBeta: 10; warmupTolerance: 1; missTolerance: 1"
+    vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: false"
+    renderer="colorManagement: true, physicallyCorrectLights"
+  >
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-gltf-model
+        id="3d-model"
+        rotation="80 0 0"
+        position="0 0 0"
+        scale="0.5 0.5 0.5"
+        src="https://cdn.glitch.global/d562de30-d533-4a27-8c05-2a86a1bcba88/house.glb?v=1716243897270;"
+      ></a-gltf-model>
+    </a-entity>
+  </a-scene>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const outlookButton = document.getElementById('outlook-button');
+      const linkedinButton = document.getElementById('linkedin-button');
+      const nextModelButton = document.getElementById('next-model-button');
+      const previousModelButton = document.getElementById('previous-model-button');
+      const model = document.getElementById('3d-model');
+      let currentModel = 0;
+      const models = [
+        'https://cdn.glitch.global/d562de30-d533-4a27-8c05-2a86a1bcba88/house.glb?v=1716243897270',
+        'https://cdn.glitch.global/d562de30-d533-4a27-8c05-2a86a1bcba88/ImageToStl.com_old%2Bhouse%2B2%2B3d%2Bmodels.glb?v=1716398127561',
+        'https://cdn.glitch.me/d562de30-d533-4a27-8c05-2a86a1bcba88/cuartoALV.glb?v=1716515505896',
+        'https://cdn.glitch.global/d562de30-d533-4a27-8c05-2a86a1bcba88/room2.glb?v=1716515901238'
+      ];
+
+      outlookButton.addEventListener('click', function() {
+        window.location.href = 'mailto:nallende@purdue.edu';
+      });
+
+      linkedinButton.addEventListener('click', function() {
+        window.location.href = 'https://www.linkedin.com/in/n%C3%A9stor-allende-heredia-6375a2191/';
+      });
+
+      nextModelButton.addEventListener('click', function() {
+        currentModel = (currentModel + 1) % models.length;
+        model.setAttribute('src', models[currentModel]);
+      });
+      
+      previousModelButton.addEventListener('click', function(){
+        currentModel = (currentModel - 1 + models.length) % models.length;
+        model.setAttribute('src', models[currentModel]);
+      });
+      
+    });
+  </script>
+</body>
+</html>
